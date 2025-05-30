@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Math Learning Path</title>
+  <link rel="stylesheet" href="styles3.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+  <div class="app">
+    <!-- Header -->
+    <header class="header">
+      <div class="container">
+        <div class="header-content">
+          <div class="left-section">
+            <div class="logo">
+              
+              <div class="logo-icon">
+                <span>V</span>
+              </div>
+              <span class="logo-text"><a href="index.html" style="text-decoration: none; color: black;">Visuals</a></span>
+      
+            </div>
+
+            <nav class="main-nav">
+              <a href="home.html" style="text-decoration: none;">
+              <button class="nav-button">
+                <i class="fas fa-home"></i>
+                Home
+              </button>
+              </a>
+              <button class="nav-button">
+                <i class="fas fa-book"></i>
+                Course
+              </button>
+            </nav>
+          </div>
+
+          <div class="right-section">
+            <div class="stats">
+              <div class="stat-item">
+               <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" 
+       viewBox="0 0 24 24" fill="currentColor" class="icon zap">
+    <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+  </svg>
+                <span>0</span>
+              </div>
+              <div class="stat-item">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon trophy">
+          <path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"></path>
+          <path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"></path>
+          <path d="M4 22h16"></path>
+          <path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"></path>
+          <path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"></path>
+          <path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"></path>
+        </svg>
+                <span>203</span>
+              </div>
+              <div class="stat-item">
+                 <svg xmlns="http://www.w3.org/2000/svg"
+                      width="20" height="20"
+                      viewBox="0 0 24 24"
+                      fill="currentColor"
+                      class="icon heart">
+                    <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3
+                            c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5
+                            c0 2.3 1.5 4.05 3 5.5l7 7Z" />
+                  </svg>
+                <span>5</span>
+              </div>
+            </div>
+
+            <div class="avatar">
+              <span>A</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <div class="container">
+        <div class="content-grid">
+          <!-- Left Side - Course Info -->
+          <div class="course-info">
+            <div class="course-header">
+              <div class="course-title">
+                <h1>Introduction to Mathematics</h1>
+                <p>Learn fundamentals with interactive lessons and practice.</p>
+              </div>
+            </div>
+
+            <div class="course-meta">
+              <div class="meta-item">
+                <i class="fas fa-eye"></i>
+                <span>12 Lessons</span>
+              </div>
+              <div class="meta-item">
+                <i class="fas fa-bullseye"></i>
+                <span>8 Practice</span>
+              </div>
+            </div>
+
+            <!-- Current Lesson -->
+            <div class="card current-lesson">
+              <div class="lesson-header">
+                <span class="level-label">LEVEL 4</span>
+                <div class="rating">
+                  <i class="fas fa-star filled"></i>
+                  <i class="fas fa-star filled"></i>
+                  <i class="fas fa-star empty"></i>
+                </div>
+              </div>
+              <h2>Multiplication Basics</h2>
+
+              <div class="lesson-actions">
+                <button class="btn btn-outline">Previous</button>
+                <button class="btn btn-primary">
+                  Start Lesson
+                  <i class="fas fa-arrow-right"></i>
+                </button>
+                <button class="btn btn-outline">Next</button>
+              </div>
+            </div>
+
+            <!-- Progress Stats -->
+            <div class="stats-grid">
+              <div class="card stat-card">
+                <div class="stat-value">3/7</div>
+                <div class="stat-label">Completed</div>
+              </div>
+              <div class="card stat-card">
+                <div class="stat-value">85%</div>
+                <div class="stat-label">Accuracy</div>
+              </div>
+              <div class="card stat-card">
+                <div class="stat-value">12</div>
+                <div class="stat-label">Streak</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right Side - Interactive Level Map -->
+          <div class="learning-path">
+            <div class="path-header">
+              <h2>Learning Path</h2>
+              <p>Follow the path to master mathematics</p>
+            </div>
+
+            <div class="level-path-container" id="draggable-path">
+              <div class="drag-instruction">
+                <i class="fas fa-arrows-alt"></i>
+                <span>Drag to explore</span>
+              </div>
+              
+              <div class="draggable-content" id="draggable-content">
+                <svg class="path-svg" viewBox="0 0 100 100" preserveAspectRatio="none">
+                  <polyline
+                    points="50,90 20,75 80,60 30,45 70,30 50,15 20,5"
+                    fill="none"
+                    stroke="#C2FA6C"
+                    stroke-width="0.5"
+                    stroke-dasharray="1,1"
+                    opacity="0.6"
+                  ></polyline>
+                </svg>
+
+                <!-- Level nodes will be added by JavaScript -->
+                <div id="level-nodes"></div>
+              </div>
+            </div>
+
+            <!-- Legend -->
+            <div class="legend">
+              <div class="legend-item">
+                <div class="legend-color completed"></div>
+                <span>Completed</span>
+              </div>
+              <div class="legend-item">
+                <div class="legend-color current"></div>
+                <span>Current</span>
+              </div>
+              <div class="legend-item">
+                <div class="legend-color locked"></div>
+                <span>Locked</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script src="script3.js"></script>
+</body>
+</html>
