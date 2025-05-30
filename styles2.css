@@ -127,12 +127,15 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding-top: 0.5rem;
 }
 
 .header-left {
   display: flex;
   align-items: center;
+  flex: 1;
   gap: 2rem;
+  padding-left: 2rem;
 }
 
 .logo {
@@ -144,7 +147,6 @@ header {
 .logo-icon {
   width: 2rem;
   height: 2rem;
-  background-color: #000000;
   border-radius: 0.75rem;
   display: flex;
   align-items: center;
@@ -166,7 +168,8 @@ header {
 }
 
 .main-nav {
-  display: none;
+  display: flex;
+  gap: 1.5rem;
 }
 
 @media (min-width: 768px) {
@@ -195,6 +198,7 @@ header {
   display: flex;
   align-items: center;
   gap: 1.5rem;
+  padding-right: 2rem;
 }
 
 .user-stats {
