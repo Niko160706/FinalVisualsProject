@@ -6,15 +6,19 @@
     <title>Visualize - Learn Math Through Visual</title>
     <link rel="stylesheet" href="styles1.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-</head>
+    
+    <script src="https://cdn.tailwindcss.com"></script> 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/expr-eval@2.0.2/dist/bundle.min.js"></script>
+    
+    </head>
 <body>
-    <!-- Header -->
     <header class="header">
         <div class="container">
             <div class="nav">
                 <div class="logo">
-                    <img src="logovisual.png" alt="Visuals Logo" height="60" />
-
+                    <img src="logovisual.png" alt="Visuals Logo" height="5"class="logo" />
                 </div>
                 <div class="nav-buttons">
                     <button class="btn btn-ghost">Sign In</button>
@@ -26,7 +30,6 @@
         </div>
     </header>
 
-    <!-- Hero Section -->
     <section class="hero">
         <div class="container">
             <div class="hero-content">
@@ -56,7 +59,6 @@
         </div>
     </section>
 
-    <!-- Learn Math Section -->
     <section class="section">
         <div class="container">
             <div class="section-header">
@@ -100,7 +102,6 @@
         </div>
     </section>
 
-    <!-- Built on Fundamentals -->
     <section class="section">
         <div class="container">
             <div class="fundamentals-grid">
@@ -129,7 +130,6 @@
         </div>
     </section>
 
-    <!-- Interactive Visuals -->
     <section class="section">
         <div class="container">
             <div class="section-header">
@@ -178,7 +178,6 @@
         </div>
     </section>
 
-    <!-- Learning Journey -->
     <section class="section">
         <div class="container">
             <div class="section-header">
@@ -202,7 +201,7 @@
                 <div class="journey-courses animate-on-scroll delay-300">
                     <h3 class="courses-title">Math Courses</h3>
                     <div class="courses-list">
-                        <div class="course-item" data-course="graphs">
+                         <div class="course-item" data-course="graphs">
                             <span>Graph and Function</span>
                             <div class="course-progress">
                                 <div class="progress-bar" style="width: 75%"></div>
@@ -280,8 +279,7 @@
         </div>
     </section>
 
-    <!-- Math Playground -->
-    <section class="section">
+    <section class="section" id="mathPlaygroundSection"> 
         <div class="container">
             <div class="section-header">
                 <h2 class="section-title animate-on-scroll">Your Math Playground</h2>
@@ -298,33 +296,52 @@
                 </button>
             </div>
             
-            <div class="playground animate-on-scroll delay-300">
-                <div class="playground-canvas">
-                    <canvas id="playgroundCanvas" class="interactive-canvas"></canvas>
-                    <div class="canvas-controls">
-                        <button id="rotateLeft" class="canvas-control-btn" title="Rotate Left">⟲</button>
-                        <button id="rotateRight" class="canvas-control-btn" title="Rotate Right">⟳</button>
-                        <button id="zoomIn" class="canvas-control-btn" title="Zoom In">+</button>
-                        <button id="zoomOut" class="canvas-control-btn" title="Zoom Out">-</button>
-                        <button id="resetView" class="canvas-control-btn" title="Reset View">⌂</button>
+            <div id="playgroundContainer" style="width: 100%; height: 600px; /* ADJUST THIS HEIGHT AS NEEDED */ margin-top: 2rem; border-radius: 16px; overflow: hidden; box-shadow: 0 8px 25px rgba(0,0,0,0.1); position: relative;">
+                <div id="canvasContainer" style="width: 100%; height: 100%; position: relative; background-color: white; overflow: hidden;">
+                    <canvas id="mathCanvas" style="display: block; width: 100%; height: 100%;"></canvas>
+
+                    <div id="left-toolbar" class="floating-toolbar">
+                        <button class="toolbar-btn" title="3D Objects / General 3D">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M21 7.5l-9-5.25L3 7.5m18 0l-9 5.25m9-5.25v9l-9 5.25M3 7.5l9 5.25M3 7.5v9l9 5.25m0-9v9" /></svg>
+                        </button>
+                        <button class="toolbar-btn" title="Functions / 2D Graphs">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 12h16.5m-16.5 3.75h16.5M3.75 19.5h16.5M5.625 4.5h12.75a1.875 1.875 0 010 3.75H5.625a1.875 1.875 0 010-3.75z" /></svg>
+                        </button>
+                        <button class="toolbar-btn" title="Integral Calculus">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9 17.25C9 18.9069 10.3431 20.25 12 20.25C13.6569 20.25 15 18.9069 15 17.25V6.75C15 5.09315 13.6569 3.75 12 3.75C10.3431 3.75 9 5.09315 9 6.75" /></svg>
+                        </button>
+                         <button class="toolbar-btn" title="Matrices / Arrays">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 9.75h16.5v4.5H3.75v-4.5zm0-3.75h16.5v.008H3.75v-.008zm0 7.5h16.5v.008H3.75v-.008zM2.25 4.5h19.5v15H2.25v-15z" /></svg>
+                        </button>
+                        <button class="toolbar-btn" title="Transformations / Vectors">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M15.042 21.672L13.684 16.6m0 0l-2.51 2.225.569-2.474-1.905-1.332 2.724-.196L13.684 16.6zm0 0l2.51-2.225-.569 2.474 1.905-1.332-2.724-.196L13.684 16.6zM21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                        </button>
                     </div>
-                    <div class="function-selector">
-                        <button class="function-btn active" data-func="paraboloid">x² + y²</button>
-                        <button class="function-btn" data-func="saddle">x² - y²</button>
-                        <button class="function-btn" data-func="wave">sin(x)cos(y)</button>
-                        <button class="function-btn" data-func="ripple">cos(√(x²+y²))</button>
+        
+                    <div id="right-toolbar" class="floating-toolbar">
+                        <button id="mode2DButton" class="toolbar-btn" title="2D Mode">2D</button>
+                        <button id="mode3DButton" class="toolbar-btn active" title="3D Mode">3D</button>
+                        <div class="toolbar-separator"></div> 
+                        <button id="zoomInButton" title="Zoom In" class="toolbar-btn text-xl">+</button>
+                        <button id="zoomOutButton" title="Zoom Out" class="toolbar-btn text-xl">-</button>
+                        <button id="resetViewButton" title="Reset View" class="toolbar-btn">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.348a8.25 8.25 0 0113.803-3.7l3.181 3.182m0-4.991v4.99" /></svg>
+                        </button>
                     </div>
+                    <p id="parseError" class="error-message"></p> 
                 </div>
-                <div class="function-input">
-                    <label for="functionInput">Enter a custom function:</label>
-                    <input type="text" id="functionInput" placeholder="e.g., x*x + y*y" value="x*x + y*y">
-                    <button class="btn btn-primary btn-full" id="plotFunction">Plot Function</button>
+        
+                <div id="bottom-input-bar">
+                    <span id="functionInputLabel">F(x,y)=</span>
+                    <div id="functionInputContainer">
+                        <input type="text" id="functionInput" class="input-field" placeholder="sin(x) * cos(y)">
+                    </div>
+                    <button id="plotButton" class="btn-plot">Plot</button>
                 </div>
             </div>
-        </div>
+            </div>
     </section>
 
-    <!-- Final CTA -->
     <section class="section">
         <div class="container">
             <div class="cta-content">
@@ -345,7 +362,6 @@
         </div>
     </section>
 
-    <!-- Footer -->
     <footer class="footer">
         <div class="container">
             <div class="footer-grid">
@@ -395,6 +411,13 @@
             </div>
         </div>
     </footer>
+    
+    <div id="customMessageBox" class="message-box-overlay hidden">
+        <div class="message-box-content">
+            <p id="messageBoxText"></p>
+            <button id="messageBoxOkButton" class="message-box-button">OK</button>
+        </div>
+    </div>
 
     <script src="script1.js"></script>
 </body>
