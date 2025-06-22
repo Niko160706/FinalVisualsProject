@@ -1,0 +1,173 @@
+/* ======================================================= */
+/* FILE CSS UNTUK HALAMAN ABOUT (NAVBAR DIPERBAIKI)      */
+/* ======================================================= */
+
+:root {
+    --font-primary: 'Satoshi', sans-serif;
+    --font-secondary: 'Inter', sans-serif;
+    --color-background: #FFFFFF;
+    --color-surface: #F8F9FA;
+    --color-text-primary: #18181B;
+    --color-text-secondary: #52525B;
+    --color-border: #E5E7EB; 
+    --color-accent: #18181B;
+    --color-accent-hover: #3F3F46;
+}
+
+/* Base & Reset */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: var(--font-secondary); font-weight: 500; line-height: 1.7; color: var(--color-text-primary); background-color: var(--color-background); -webkit-font-smoothing: antialiased; }
+h1, h2, h3 { font-family: var(--font-primary); font-weight: 700; }
+p { color: var(--color-text-secondary); max-width: 65ch; }
+.container { max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
+
+/* === START: HEADER & NAVBAR STYLES (SAMA DENGAN LANDING PAGE) === */
+.header {
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--color-border);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+.nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 80px; /* Tinggi navbar disamakan */
+}
+.logo { display: flex; align-items: center; gap: 0.75rem; text-decoration: none; }
+.logo-icon { width: 32px; height: 32px; background: var(--color-text-primary); border-radius: 8px; display: flex; align-items: center; justify-content: center; color: #fff; font-weight: 700; }
+.logo-text { font-family: var(--font-primary); font-size: 1.25rem; font-weight: 700; color: var(--color-text-primary); }
+.nav-links { display: flex; gap: 2rem; }
+.nav-link { font-family: var(--font-primary); font-weight: 500; text-decoration: none; color: var(--color-text-secondary); transition: color 0.2s ease; padding: 0.5rem; border-radius: 8px; }
+.nav-link:hover { color: var(--color-text-primary); }
+.nav-link.active { color: var(--color-text-primary); font-weight: 700; }
+.nav-buttons { display: flex; gap: 0.75rem; align-items: center; }
+
+/* Tombol juga disamakan gayanya */
+.btn {
+    font-family: var(--font-primary);
+    font-weight: 700;
+    padding: 12px 24px;
+    border-radius: 20px;
+    border: 1px solid transparent;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    text-decoration: none;
+}
+.btn-primary { background-color: var(--color-accent); color: var(--color-background); }
+.btn-primary:hover { background-color: var(--color-accent-hover); transform: translateY(-2px); box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
+.btn-ghost { background-color: transparent; color: var(--color-text-primary); border-color: var(--color-border); }
+.btn-ghost:hover { background-color: #f3f4f6; border-color: #d1d5db; }
+/* === END: HEADER & NAVBAR STYLES === */
+
+
+/* Main Content Layout */
+.main-content { padding: 5rem 0; }
+.about-container {
+    max-width: 768px; /* Membuat konten lebih ramping dan fokus di tengah */
+}
+.about-section {
+    padding: 3rem 0;
+    border-bottom: 1px solid var(--color-border);
+}
+.about-section:last-child { border-bottom: none; }
+.section-icon { margin-bottom: 1.5rem; }
+.section-title {
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+    line-height: 1.2;
+}
+.section-body p {
+    font-size: 1.125rem;
+    line-height: 1.8;
+    margin-bottom: 1.5rem; /* Jarak antar paragraf pendek */
+}
+
+/* Technology Points */
+.tech-points {
+    margin-top: 3rem;
+    display: grid;
+    gap: 2.5rem;
+}
+.tech-point h3 {
+    font-size: 1.25rem;
+    margin-bottom: 0.5rem;
+}
+
+/* CTA Section */
+.cta-section {
+    text-align: center;
+    background-color: var(--color-surface);
+    border-radius: 16px;
+    padding: 4rem 2rem;
+    margin-top: 2rem;
+}
+.cta-section .section-title {
+    font-size: 2rem;
+}
+.cta-section p {
+    margin-left: auto;
+    margin-right: auto;
+}
+.cta-buttons {
+    margin-top: 2rem;
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+}
+.cta-buttons .btn {
+    font-size: 1rem;
+    padding: 14px 28px;
+}
+
+/* FAQ Accordion Styles */
+.faq-container {
+    border-top: 1px solid var(--color-border);
+}
+.faq-item {
+    border-bottom: 1px solid var(--color-border);
+}
+.faq-question {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-align: left;
+    padding: 1.5rem 0;
+    font-family: var(--font-primary);
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--color-text-primary);
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+.faq-icon {
+    font-size: 1.5rem;
+    transition: transform 0.3s ease;
+    font-family: sans-serif;
+}
+.faq-answer {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease-in-out;
+}
+.faq-answer p {
+    padding-bottom: 1.5rem;
+    font-size: 1rem;
+    line-height: 1.7;
+}
+
+/* Active state for FAQ */
+.faq-item.active .faq-answer {
+    max-height: 300px; /* Atur tinggi maksimal yang cukup untuk jawaban */
+}
+.faq-item.active .faq-question .faq-icon {
+    transform: rotate(45deg);
+}

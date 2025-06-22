@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Visualize - Quiz Platform</title>
+  <link rel="stylesheet" href="styles5.css">
+  <link href="https://api.fontshare.com/v2/css?f[]=satoshi@900,700,500&f[]=inter@500,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+  <div class="app">
+    <!-- Header -->
+    <header class="header">
+      <div class="container header-container">
+        <div class="header-left">
+          <a href="index.html" class="logo" onclick="navigateTo('hub')">
+            <div class="logo-icon">V</div>
+            <span class="logo-text">Visualize</span>
+          </a>
+          <nav class="main-nav">
+            <a href="home.html" class="nav-link" onclick="navigateTo('catalog')">Home</a>
+            <a href="course.html" class="nav-link" onclick="navigateTo('catalog')">Courses</a>
+            <a href="#" class="nav-link active" onclick="navigateTo('hub')">Quizzes</a>
+            <a href="#" class="nav-link">Community</a>
+          </nav>
+        </div>
+
+        <div class="header-right">
+          <div class="user-stats">
+            <a href="#" class="stat-item" title="Daily Streak">
+              <svg class="icon zap" viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+              <span>12</span>
+            </a>
+            <a href="#" class="stat-item" title="Total Points">
+              <svg class="icon trophy" viewBox="0 0 24 24"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"></path><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"></path><path d="M4 22h16"></path><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"></path><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"></path><path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"></path></svg>
+              <span>1,250</span>
+            </a>
+          </div>
+          <div class="user-avatar-wrapper">
+            <div class="user-avatar">A</div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Content Area -->
+    <main id="app-content" class="main-content">
+      <!-- Content will be dynamically loaded here -->
+    </main>
+  </div>
+
+  <!-- Template 1: Placement Test -->
+  <template id="placement-test-template">
+    <div class="placement-test-view">
+      <div class="container">
+        <div class="placement-welcome" id="placement-welcome">
+          <div class="welcome-content">
+            <h1>Welcome to Visualize Quiz!</h1>
+            <p>Before we start, let's assess your current knowledge level. This quick placement test will help us personalize your learning experience.</p>
+            <div class="test-info">
+              <div class="info-item">
+                <i class="fas fa-clock"></i>
+                <span>5-7 questions</span>
+              </div>
+              <div class="info-item">
+                <i class="fas fa-brain"></i>
+                <span>Adaptive difficulty</span>
+              </div>
+              <div class="info-item">
+                <i class="fas fa-chart-line"></i>
+                <span>Personalized results</span>
+              </div>
+            </div>
+            <button class="btn btn-primary" onclick="startPlacementTest()">
+              Start Placement Test
+              <i class="fas fa-arrow-right"></i>
+            </button>
+          </div>
+        </div>
+
+        <div class="placement-question" id="placement-question" style="display: none;">
+          <div class="question-container">
+            <div class="question-header">
+              <div class="progress-bar">
+                <div class="progress-fill" id="placement-progress"></div>
+              </div>
+              <span class="question-counter" id="placement-counter">Question 1 of 5</span>
+            </div>
+
+            <div class="question-content">
+              <h2 id="placement-question-text">What is 2 + 3?</h2>
+              <div class="answer-options" id="placement-options">
+                <button class="option-btn" onclick="selectPlacementAnswer(0)">4</button>
+                <button class="option-btn" onclick="selectPlacementAnswer(1)">5</button>
+                <button class="option-btn" onclick="selectPlacementAnswer(2)">6</button>
+                <button class="option-btn" onclick="selectPlacementAnswer(3)">7</button>
+              </div>
+            </div>
+
+            <div class="question-actions">
+              <button class="btn btn-outline" onclick="skipPlacementQuestion()" id="skip-btn">Skip</button>
+              <button class="btn btn-primary" onclick="nextPlacementQuestion()" id="next-btn" disabled>
+                Next Question
+                <i class="fas fa-arrow-right"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="placement-complete" id="placement-complete" style="display: none;">
+          <div class="complete-content">
+            <div class="success-icon">
+              <i class="fas fa-check-circle"></i>
+            </div>
+            <h1>Great job!</h1>
+            <p>Your placement test is complete. We've analyzed your responses and are ready to create personalized quizzes for you.</p>
+            <div class="level-result">
+              <span class="level-label">Your Level:</span>
+              <span class="level-value" id="placement-level">Intermediate</span>
+            </div>
+            <button class="btn btn-primary" onclick="navigateTo('hub')">
+              Continue to Quiz Hub
+              <i class="fas fa-arrow-right"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </template>
+
+  <!-- Template 2: Quiz Hub -->
+  <template id="quiz-hub-template">
+    <div class="quiz-hub-view">
+      <div class="container">
+        <div class="hub-header">
+          <h1>Quiz Generator</h1>
+          <p>Create personalized quizzes tailored to your learning needs</p>
+        </div>
+
+        <div class="hub-layout">
+          <!-- Left Column: Quiz Generator -->
+          <div class="generator-panel">
+            <div class="panel-section">
+              <h3>Search Topics</h3>
+              <div class="search-input">
+                <i class="fas fa-search"></i>
+                <input type="text" placeholder="Search for topics..." id="topic-search">
+              </div>
+            </div>
+
+            <div class="panel-section">
+              <h3>Select Topics</h3>
+              <div class="topic-tags" id="topic-tags">
+                <button class="tag-btn" data-topic="algebra">Algebra</button>
+                <button class="tag-btn" data-topic="calculus">Calculus</button>
+                <button class="tag-btn" data-topic="geometry">Geometry</button>
+                <button class="tag-btn" data-topic="statistics">Statistics</button>
+                <button class="tag-btn" data-topic="trigonometry">Trigonometry</button>
+                <button class="tag-btn" data-topic="vectors">Vectors</button>
+                <button class="tag-btn" data-topic="matrices">Matrices</button>
+                <button class="tag-btn" data-topic="derivatives">Derivatives</button>
+              </div>
+              <div class="selected-topics" id="selected-topics"></div>
+            </div>
+
+            <div class="panel-section">
+              <h3>Number of Questions</h3>
+              <div class="slider-container">
+                <input type="range" min="5" max="50" value="10" class="slider" id="question-count">
+                <div class="slider-labels">
+                  <span>5</span>
+                  <span id="question-count-display">10</span>
+                  <span>50</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="panel-section">
+              <h3>Difficulty Level</h3>
+              <div class="difficulty-selector">
+                <button class="difficulty-btn active" data-difficulty="adaptive">Adaptive</button>
+                <button class="difficulty-btn" data-difficulty="easy">Easy</button>
+                <button class="difficulty-btn" data-difficulty="medium">Medium</button>
+                <button class="difficulty-btn" data-difficulty="hard">Hard</button>
+              </div>
+            </div>
+
+            <div class="panel-section">
+              <button class="btn btn-primary btn-large" onclick="generateQuiz()" id="generate-btn">
+                <i class="fas fa-magic"></i>
+                Generate & Start Quiz
+              </button>
+            </div>
+          </div>
+
+          <!-- Right Column: Info & AI -->
+          <div class="info-panel">
+            <div class="widget history-widget">
+              <h3>Recent Quizzes</h3>
+              <div class="history-list" id="history-list">
+                <div class="history-item" onclick="reviewQuiz('quiz1')">
+                  <div class="history-info">
+                    <span class="history-topic">Algebra, Calculus</span>
+                    <span class="history-score">8/10 Correct</span>
+                  </div>
+                  <span class="history-date">2 hours ago</span>
+                </div>
+                <div class="history-item" onclick="reviewQuiz('quiz2')">
+                  <div class="history-info">
+                    <span class="history-topic">Geometry</span>
+                    <span class="history-score">6/8 Correct</span>
+                  </div>
+                  <span class="history-date">1 day ago</span>
+                </div>
+                <div class="history-item" onclick="reviewQuiz('quiz3')">
+                  <div class="history-info">
+                    <span class="history-topic">Statistics</span>
+                    <span class="history-score">9/12 Correct</span>
+                  </div>
+                  <span class="history-date">3 days ago</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="widget ai-widget">
+              <h3>AI Recommendations</h3>
+              <div class="ai-content">
+                <div class="ai-insight">
+                  <h4>Focus on Your Weak Areas</h4>
+                  <p>You've been struggling with <strong>Integral Calculus</strong>. Let's practice more!</p>
+                </div>
+                <button class="btn btn-outline" onclick="createPracticeQuiz('integral-calculus')">
+                  <i class="fas fa-target"></i>
+                  Create Practice Quiz
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </template>
+
+  <!-- Template 3: Active Quiz -->
+  <template id="active-quiz-template">
+    <div class="active-quiz-view">
+      <div class="container">
+        <div class="quiz-header">
+          <div class="quiz-progress">
+            <div class="progress-bar">
+              <div class="progress-fill" id="quiz-progress"></div>
+            </div>
+            <span class="progress-text" id="progress-text">Question 1 of 10</span>
+          </div>
+          <button class="btn btn-outline btn-small" onclick="pauseQuiz()">
+            <i class="fas fa-pause"></i>
+            Pause
+          </button>
+        </div>
+
+        <div class="quiz-content">
+          <div class="question-panel">
+            <div class="question-number" id="question-number">Question 1</div>
+            <h2 class="question-text" id="question-text">What is the derivative of x²?</h2>
+            
+            <div class="answer-section">
+              <div class="answer-input">
+                <input type="text" placeholder="Enter your answer..." id="answer-input">
+              </div>
+              <button class="btn btn-primary" onclick="checkAnswer()" id="check-btn">
+                Check Answer
+                <i class="fas fa-check"></i>
+              </button>
+            </div>
+
+            <div class="answer-feedback" id="answer-feedback" style="display: none;">
+              <div class="feedback-content">
+                <div class="feedback-icon" id="feedback-icon"></div>
+                <div class="feedback-text" id="feedback-text"></div>
+              </div>
+              <button class="btn btn-primary" onclick="nextQuestion()" id="next-question-btn">
+                Next Question
+                <i class="fas fa-arrow-right"></i>
+              </button>
+            </div>
+          </div>
+
+          <div class="navigation-panel">
+            <h4>Question Navigation</h4>
+            <div class="question-grid" id="question-grid">
+              <!-- Question numbers will be populated by JavaScript -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </template>
+
+  <!-- Template 4: Quiz Review -->
+  <template id="quiz-review-template">
+    <div class="quiz-review-view">
+      <div class="container">
+        <div class="review-header">
+          <div class="back-button" onclick="navigateTo('hub')">
+            <i class="fas fa-arrow-left"></i>
+            <span>Back to Quiz Hub</span>
+          </div>
+          
+          <div class="review-summary">
+            <h1>Quiz Results</h1>
+            <div class="summary-stats">
+              <div class="stat-item">
+                <span class="stat-value" id="final-score">8/10</span>
+                <span class="stat-label">Correct</span>
+              </div>
+              <div class="stat-item">
+                <span class="stat-value" id="final-time">12:34</span>
+                <span class="stat-label">Time</span>
+              </div>
+              <div class="stat-item">
+                <span class="stat-value" id="final-accuracy">80%</span>
+                <span class="stat-label">Accuracy</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="review-content">
+          <h2>Question Review</h2>
+          <div class="questions-review" id="questions-review">
+            <!-- Questions will be populated by JavaScript -->
+          </div>
+        </div>
+
+        <div class="review-actions">
+          <button class="btn btn-outline" onclick="navigateTo('hub')">
+            <i class="fas fa-home"></i>
+            Back to Hub
+          </button>
+          <button class="btn btn-primary" onclick="retakeQuiz()">
+            <i class="fas fa-redo"></i>
+            Retake Quiz
+          </button>
+        </div>
+      </div>
+    </div>
+  </template>
+
+  <script src="script5.js"></script>
+</body>
+</html>
