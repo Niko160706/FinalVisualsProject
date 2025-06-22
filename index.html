@@ -4,375 +4,205 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Visualize - Learn Math Through Visual</title>
+    
+    <link href="https://api.fontshare.com/v2/css?f[]=satoshi@900,700,500&f[]=inter@500,600&display=swap" rel="stylesheet">
+    
     <link rel="stylesheet" href="styles1.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     
     <script src="https://cdn.tailwindcss.com"></script> 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/expr-eval@2.0.2/dist/bundle.min.js"></script>
     
-    </head>
+</head>
 <body>
     <header class="header">
         <div class="container">
-            <div class="nav">
-                <div class="logo">
-                    <img src="logovisual.png" alt="Visuals Logo" height="5"class="logoimg" />
-                </div>
+            <nav class="nav">
+                <a href="index.html" class="logo">
+                    <div class="logo-icon">V</div>
+                    <span class="logo-text">Visualize</span>
+                </a>
                 <div class="nav-buttons">
                     <button class="btn btn-ghost">Sign In</button>
                     <a href="home.html" style="text-decoration: none;">
-                    <button class="btn btn-primary">Get Started</button>
+                        <button class="btn btn-primary">Get Started</button>
                     </a>
                 </div>
-            </div>
+            </nav>
         </div>
     </header>
 
-    <section class="hero">
-        <div class="container">
-            <div class="hero-content">
-                <h1 class="hero-title animate-fade-in-up">
-                    Visualize the<br>
-                    fundamentals
-                </h1>
-                <p class="hero-description animate-fade-in-up delay-100">
-                    Transform abstract concepts into interactive 2D visualizations and theorems. 
-                    See how functions come to life right before your eyes.
-                </p>
-                <div class="hero-buttons animate-fade-in-up delay-200">
-                    <button class="btn btn-primary btn-large">
-                        Get Started
-                        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M5 12h14M12 5l7 7-7 7"/>
-                        </svg>
-                    </button>
-                    <button class="btn btn-outline btn-large">
-                        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <polygon points="5,3 19,12 5,21"/>
-                        </svg>
-                        Watch Demo
-                    </button>
-                </div>
-            </div>
-        </div>
-    </section>
+    <main>
 
-    <section class="section">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title animate-on-scroll">Learn math through visual</h2>
-                <p class="section-description animate-on-scroll delay-100">
-                    Understand the core of mathematics with intuitive visualizations and interactive experiences.
-                </p>
+        <section class="section hero">
+            <div class="container">
+                <div class="section-header hero-header">
+                    <h1 class="hero-title">
+                        Stop Memorizing. <br> Start Visualizing.
+                    </h1>
+                    <p class="section-description hero-description">
+                        An interactive environment to see how functions, vectors, and theorems come to life right before your eyes.
+                    </p>
+                     <div class="cta-buttons">
+                        <a href="home.html" style="text-decoration: none;"><button class="btn btn-primary btn-large">Launch Interactive Demo</button></a>
+                    </div>
+                </div>
+                
+                <div class="section-content">
+                    <div id="playgroundContainer" class="hero-playground">
+                        <div id="canvasContainer">
+                            <canvas id="mathCanvas"></canvas>
+                            <div id="left-toolbar" class="floating-toolbar">
+                                <button class="toolbar-btn" title="3D Objects / General 3D"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M21 7.5l-9-5.25L3 7.5m18 0l-9 5.25m9-5.25v9l-9 5.25M3 7.5l9 5.25M3 7.5v9l9 5.25m0-9v9" /></svg></button>
+                                <button class="toolbar-btn" title="Functions / 2D Graphs"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 12h16.5m-16.5 3.75h16.5M3.75 19.5h16.5M5.625 4.5h12.75a1.875 1.875 0 010 3.75H5.625a1.875 1.875 0 010-3.75z" /></svg></button>
+                                <button class="toolbar-btn" title="Integral Calculus"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9 17.25C9 18.9069 10.3431 20.25 12 20.25C13.6569 20.25 15 18.9069 15 17.25V6.75C15 5.09315 13.6569 3.75 12 3.75C10.3431 3.75 9 5.09315 9 6.75" /></svg></button>
+                                <button class="toolbar-btn" title="Matrices / Arrays"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 9.75h16.5v4.5H3.75v-4.5zm0-3.75h16.5v.008H3.75v-.008zm0 7.5h16.5v.008H3.75v-.008zM2.25 4.5h19.5v15H2.25v-15z" /></svg></button>
+                                <button class="toolbar-btn" title="Transformations / Vectors"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M15.042 21.672L13.684 16.6m0 0l-2.51 2.225.569-2.474-1.905-1.332 2.724-.196L13.684 16.6zm0 0l2.51-2.225-.569 2.474 1.905-1.332-2.724-.196L13.684 16.6zM21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg></button>
+                            </div>
+                            <div id="right-toolbar" class="floating-toolbar">
+                                <button id="mode2DButton" class="toolbar-btn" title="2D Mode">2D</button>
+                                <button id="mode3DButton" class="toolbar-btn active" title="3D Mode">3D</button>
+                                <div class="toolbar-separator"></div> 
+                                <button id="zoomInButton" title="Zoom In" class="toolbar-btn text-xl">+</button>
+                                <button id="zoomOutButton" title="Zoom Out" class="toolbar-btn text-xl">-</button>
+                                <button id="resetViewButton" title="Reset View" class="toolbar-btn"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.348a8.25 8.25 0 0113.803-3.7l3.181 3.182m0-4.991v4.99" /></svg></button>
+                            </div>
+                            <p id="parseError" class="error-message"></p> 
+                        </div>
+                        <div id="bottom-input-bar">
+                            <span id="functionInputLabel">F(x,y)=</span>
+                            <div id="functionInputContainer">
+                                <input type="text" id="functionInput" class="input-field" placeholder="sin(sqrt(x^2+y^2)) / sqrt(x^2+y^2)">
+                            </div>
+                            <button id="plotButton" class="btn-plot">Plot</button>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="visual-grid">
-                <div class="visual-card animate-on-scroll delay-200">
-                    <div class="visual-placeholder interactive-demo" data-demo="functions">
-                        <canvas id="functionsDemo" class="demo-canvas-small"></canvas>
-                        <div class="demo-overlay">
-                            <span>📊 Click to interact!</span>
-                        </div>
-                    </div>
-                    <h3 class="visual-title">Function Graphs</h3>
-                    <p class="visual-description">See how equations transform into visual curves</p>
-                </div>
-                <div class="visual-card animate-on-scroll delay-300">
-                    <div class="visual-placeholder interactive-demo" data-demo="geometry">
-                        <canvas id="geometryDemo" class="demo-canvas-small"></canvas>
-                        <div class="demo-overlay">
-                            <span>📐 Click to interact!</span>
-                        </div>
-                    </div>
-                    <h3 class="visual-title">Geometric Shapes</h3>
-                    <p class="visual-description">Explore angles, areas, and transformations</p>
-                </div>
-                <div class="visual-card animate-on-scroll delay-400">
-                    <div class="visual-placeholder interactive-demo" data-demo="algebra">
-                        <canvas id="algebraDemo" class="demo-canvas-small"></canvas>
-                        <div class="demo-overlay">
-                            <span>🔢 Click to interact!</span>
-                        </div>
-                    </div>
-                    <h3 class="visual-title">Algebraic Concepts</h3>
-                    <p class="visual-description">Visualize variables and equation solving</p>
-                </div>
-            </div>
-        </div>
-    </section>
+        </section>
 
-    <section class="section">
-        <div class="container">
-            <div class="fundamentals-grid">
-                <div class="fundamentals-content animate-on-scroll">
-                    <h2 class="section-title">
-                        Built on<br>
-                        fundamentals
-                    </h2>
+        <section class="section">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">A new way to build intuition</h2>
                     <p class="section-description">
-                        Every topic starts from the core — no skipping steps. You'll learn why, not just how.
+                        We build every course on a foundation of first principles. No skipping steps, just pure, intuitive understanding.
                     </p>
                 </div>
-                <div class="fundamentals-cards">
-                    <div class="feature-card animate-on-scroll delay-100">
-                        <div class="feature-icon">📚</div>
-                        <h3 class="feature-title">Core Concepts</h3>
-                        <p class="feature-description">Foundation first approach</p>
-                    </div>
-                    <div class="feature-card animate-on-scroll delay-200">
-                        <div class="feature-icon">🎯</div>
-                        <h3 class="feature-title">Focused Learning</h3>
-                        <p class="feature-description">No unnecessary complexity</p>
+                <div class="section-content">
+                    <div class="feature-grid">
+                        <div class="feature-card">
+                            <div class="feature-icon">📚</div>
+                            <h3 class="feature-title">Intuitive Visuals</h3>
+                            <p class="feature-text">Grasp complex topics instantly with interactive models that respond to you.</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon">🎯</div>
+                            <h3 class="feature-title">Guided Paths</h3>
+                            <p class="feature-text">Follow a structured curriculum designed to build your knowledge from the ground up.</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon">✨</div>
+                            <h3 class="feature-title">Personalized Challenges</h3>
+                            <p class="feature-text">Test your understanding with quizzes that adapt to your skill level, keeping you in the flow.</p>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <section class="section">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title animate-on-scroll">Interactive 2D & 3D Visuals</h2>
-                <p class="section-description animate-on-scroll delay-100">
-                    Explore graphs, vectors, and geometry in a space you can move, zoom, and rotate — 
-                    powered by cutting-edge technology.
-                </p>
-            </div>
-            
-            <div class="interactive-demos">
-                <div class="demo-item animate-on-scroll delay-200">
-                    <div class="demo-visual">
-                        <canvas id="canvas2d" class="demo-canvas"></canvas>
-                        <div class="demo-controls">
-                            <button class="control-btn" data-function="parabola">y = x²</button>
-                            <button class="control-btn" data-function="sine">y = sin(x)</button>
-                            <button class="control-btn" data-function="cosine">y = cos(x)</button>
-                            <button class="control-btn" data-function="cubic">y = x³</button>
-                        </div>
-                    </div>
-                    <h3 class="demo-title">2D Interactive Plots</h3>
-                    <p class="demo-description">
-                        Drag, zoom, and explore mathematical relationships in an intuitive 2D environment 
-                        designed for deep understanding and interactive learning.
+        <section class="section">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">Explore in 2D & 3D</h2>
+                    <p class="section-description">
+                        Switch between perspectives to truly understand the relationship between 2D graphs and 3D surfaces.
                     </p>
                 </div>
-                
-                <div class="demo-item animate-on-scroll delay-300">
-                    <div class="demo-visual">
-                        <canvas id="canvas3d" class="demo-canvas"></canvas>
-                        <div class="demo-controls">
-                            <button class="control-btn" data-shape="cube">Cube</button>
-                            <button class="control-btn" data-shape="sphere">Sphere</button>
-                            <button class="control-btn" data-shape="pyramid">Pyramid</button>
-                            <button class="control-btn" data-shape="torus">Torus</button>
+                <div class="section-content">
+                    <div class="interactive-demos">
+                        <div class="demo-item">
+                            <div class="demo-visual">
+                                <canvas id="canvas2d" class="demo-canvas"></canvas>
+                            </div>
+                            <div class="demo-text">
+                                <h3 class="demo-title">2D Interactive Plots</h3>
+                                <div class="demo-controls">
+                                    <button class="control-btn" data-function="parabola">y = x²</button>
+                                    <button class="control-btn" data-function="sine">y = sin(x)</button>
+                                    <button class="control-btn" data-function="cosine">y = cos(x)</button>
+                                    <button class="control-btn" data-function="cubic">y = x³</button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="demo-item">
+                             <div class="demo-visual">
+                                <canvas id="canvas3d" class="demo-canvas"></canvas>
+                            </div>
+                            <div class="demo-text">
+                                <h3 class="demo-title">3D Space Exploration</h3>
+                                <div class="demo-controls">
+                                    <button class="control-btn" data-shape="cube">Cube</button>
+                                    <button class="control-btn" data-shape="sphere">Sphere</button>
+                                    <button class="control-btn" data-shape="pyramid">Pyramid</button>
+                                    <button class="control-btn" data-shape="torus">Torus</button>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <h3 class="demo-title">3D Space Exploration</h3>
-                    <p class="demo-description">
-                        Rotate and navigate through three-dimensional concepts with full control over 
-                        perspective and viewpoint for immersive mathematical exploration.
+                </div>
+            </div>
+        </section>
+        <section class="section">
+            <div class="container">
+                 <div class="section-header">
+                    <h2 class="section-title">Follow your learning path</h2>
+                    <p class="section-description">
+                        From basic equations to advanced calculus, our courses are designed as a journey. Complete modules, unlock new challenges, and see your progress grow.
                     </p>
                 </div>
+                 <div class="section-content">
+                    <div class="path-visual">
+                         <div class="course-item"><span>Graph and Function</span><div class="course-status-icon"></div></div>
+                         <div class="course-item"><span>Basic Equation</span><div class="course-status-icon"></div></div>
+                         <div class="course-item locked"><span>Visual Algebra</span><div class="course-status-icon"></div></div>
+                         <div class="course-item locked"><span>Geometry</span><div class="course-status-icon"></div></div>
+                         <div class="course-item locked"><span>Calculus</span><div class="course-status-icon"></div></div>
+                    </div>
+                    <div class="path-cta">
+                        <button class="btn btn-primary btn-large">Explore All Courses</button>
+                    </div>
+                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <section class="section">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title animate-on-scroll">Your Learning Journey</h2>
-                <p class="section-description animate-on-scroll delay-100">Challenge yourself. Track your streaks. Celebrate your growth.</p>
-            </div>
-            
-            <div class="journey-grid">
-                <div class="journey-video animate-on-scroll delay-200">
-                    <div class="video-placeholder interactive-video">
-                        <canvas id="videoDemo" class="video-canvas"></canvas>
-                        <div class="play-button">
-                            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <polygon points="5,3 19,12 5,21"/>
-                            </svg>
-                        </div>
-                        <p>Interactive Learning Demo</p>
-                    </div>
-                </div>
-                
-                <div class="journey-courses animate-on-scroll delay-300">
-                    <h3 class="courses-title">Math Courses</h3>
-                    <div class="courses-list">
-                         <div class="course-item" data-course="graphs">
-                            <span>Graph and Function</span>
-                            <div class="course-progress">
-                                <div class="progress-bar" style="width: 75%"></div>
-                            </div>
-                            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M5 12h14M12 5l7 7-7 7"/>
-                            </svg>
-                        </div>
-                        <div class="course-item" data-course="equations">
-                            <span>Basic Equation</span>
-                            <div class="course-progress">
-                                <div class="progress-bar" style="width: 60%"></div>
-                            </div>
-                            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M5 12h14M12 5l7 7-7 7"/>
-                            </svg>
-                        </div>
-                        <div class="course-item" data-course="algebra">
-                            <span>Visual Algebra</span>
-                            <div class="course-progress">
-                                <div class="progress-bar" style="width: 45%"></div>
-                            </div>
-                            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M5 12h14M12 5l7 7-7 7"/>
-                            </svg>
-                        </div>
-                        <div class="course-item" data-course="geometry">
-                            <span>Geometry</span>
-                            <div class="course-progress">
-                                <div class="progress-bar" style="width: 30%"></div>
-                            </div>
-                            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M5 12h14M12 5l7 7-7 7"/>
-                            </svg>
-                        </div>
-                        <div class="course-item" data-course="trigonometry">
-                            <span>Trigonometry</span>
-                            <div class="course-progress">
-                                <div class="progress-bar" style="width: 20%"></div>
-                            </div>
-                            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M5 12h14M12 5l7 7-7 7"/>
-                            </svg>
-                        </div>
-                        <div class="course-item" data-course="vectors">
-                            <span>Vector & Matrix</span>
-                            <div class="course-progress">
-                                <div class="progress-bar" style="width: 10%"></div>
-                            </div>
-                            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M5 12h14M12 5l7 7-7 7"/>
-                            </svg>
-                        </div>
-                        <div class="course-item" data-course="linear">
-                            <span>Linear Algebra</span>
-                            <div class="course-progress">
-                                <div class="progress-bar" style="width: 5%"></div>
-                            </div>
-                            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M5 12h14M12 5l7 7-7 7"/>
-                            </svg>
-                        </div>
-                        <div class="course-item" data-course="calculus">
-                            <span>Calculus</span>
-                            <div class="course-progress">
-                                <div class="progress-bar" style="width: 0%"></div>
-                            </div>
-                            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M5 12h14M12 5l7 7-7 7"/>
-                            </svg>
-                        </div>
+        <section class="section cta-section">
+            <div class="container">
+                <div class="section-header">
+                    <h1 class="hero-title">Start your journey today.</h1>
+                    <p class="section-description">
+                        Join thousands of learners who are mastering mathematics through pure, visual understanding.
+                    </p>
+                    <div class="cta-buttons">
+                        <a href="home.html" style="text-decoration: none;"><button class="btn btn-primary btn-large">Get Started for Free</button></a>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
-
-    <section class="section" id="mathPlaygroundSection"> 
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title animate-on-scroll">Your Math Playground</h2>
-                <p class="section-description animate-on-scroll delay-100">
-                    Whether you draw or type, instantly see curves, surfaces, and structures take shape 
-                    in real-time visualization.
-                </p>
-                <button class="btn btn-primary btn-large animate-on-scroll delay-200" id="launchDemo">
-                    <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
-                        <path d="M9 9h6v6h-6z"/>
-                    </svg>
-                    Launch Interactive Demo
-                </button>
-            </div>
-            
-            <div id="playgroundContainer" style="width: 100%; height: 600px; /* ADJUST THIS HEIGHT AS NEEDED */ margin-top: 2rem; border-radius: 16px; overflow: hidden; box-shadow: 0 8px 25px rgba(0,0,0,0.1); position: relative;">
-                <div id="canvasContainer" style="width: 100%; height: 100%; position: relative; background-color: white; overflow: hidden;">
-                    <canvas id="mathCanvas" style="display: block; width: 100%; height: 100%;"></canvas>
-
-                    <div id="left-toolbar" class="floating-toolbar">
-                        <button class="toolbar-btn" title="3D Objects / General 3D">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M21 7.5l-9-5.25L3 7.5m18 0l-9 5.25m9-5.25v9l-9 5.25M3 7.5l9 5.25M3 7.5v9l9 5.25m0-9v9" /></svg>
-                        </button>
-                        <button class="toolbar-btn" title="Functions / 2D Graphs">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 12h16.5m-16.5 3.75h16.5M3.75 19.5h16.5M5.625 4.5h12.75a1.875 1.875 0 010 3.75H5.625a1.875 1.875 0 010-3.75z" /></svg>
-                        </button>
-                        <button class="toolbar-btn" title="Integral Calculus">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9 17.25C9 18.9069 10.3431 20.25 12 20.25C13.6569 20.25 15 18.9069 15 17.25V6.75C15 5.09315 13.6569 3.75 12 3.75C10.3431 3.75 9 5.09315 9 6.75" /></svg>
-                        </button>
-                         <button class="toolbar-btn" title="Matrices / Arrays">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 9.75h16.5v4.5H3.75v-4.5zm0-3.75h16.5v.008H3.75v-.008zm0 7.5h16.5v.008H3.75v-.008zM2.25 4.5h19.5v15H2.25v-15z" /></svg>
-                        </button>
-                        <button class="toolbar-btn" title="Transformations / Vectors">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M15.042 21.672L13.684 16.6m0 0l-2.51 2.225.569-2.474-1.905-1.332 2.724-.196L13.684 16.6zm0 0l2.51-2.225-.569 2.474 1.905-1.332-2.724-.196L13.684 16.6zM21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
-                        </button>
-                    </div>
-        
-                    <div id="right-toolbar" class="floating-toolbar">
-                        <button id="mode2DButton" class="toolbar-btn" title="2D Mode">2D</button>
-                        <button id="mode3DButton" class="toolbar-btn active" title="3D Mode">3D</button>
-                        <div class="toolbar-separator"></div> 
-                        <button id="zoomInButton" title="Zoom In" class="toolbar-btn text-xl">+</button>
-                        <button id="zoomOutButton" title="Zoom Out" class="toolbar-btn text-xl">-</button>
-                        <button id="resetViewButton" title="Reset View" class="toolbar-btn">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.348a8.25 8.25 0 0113.803-3.7l3.181 3.182m0-4.991v4.99" /></svg>
-                        </button>
-                    </div>
-                    <p id="parseError" class="error-message"></p> 
-                </div>
-        
-                <div id="bottom-input-bar">
-                    <span id="functionInputLabel">F(x,y)=</span>
-                    <div id="functionInputContainer">
-                        <input type="text" id="functionInput" class="input-field" placeholder="sin(x) * cos(y)">
-                    </div>
-                    <button id="plotButton" class="btn-plot">Plot</button>
-                </div>
-            </div>
-            </div>
-    </section>
-
-    <section class="section">
-        <div class="container">
-            <div class="cta-content">
-                <h2 class="section-title animate-on-scroll">Start Your Journey</h2>
-                <p class="section-description animate-on-scroll delay-100">
-                    Join thousands of learners who are mastering mathematics through visualization.
-                </p>
-                <div class="cta-buttons">
-                    <button class="btn btn-primary btn-large animate-on-scroll delay-200">
-                        Get Started
-                        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M5 12h14M12 5l7 7-7 7"/>
-                        </svg>
-                    </button>
-                    <button class="btn btn-outline btn-large animate-on-scroll delay-300">Request a Demo</button>
-                </div>
-            </div>
-        </div>
-    </section>
+        </section>
+    </main>
 
     <footer class="footer">
         <div class="container">
             <div class="footer-grid">
                 <div class="footer-brand">
-                    <div class="logo">
+                    <a href="index.html" class="logo">
                         <div class="logo-icon">V</div>
                         <span class="logo-text">Visualize</span>
-                    </div>
+                    </a>
                     <p class="footer-description">Making mathematics visual and accessible for everyone.</p>
                 </div>
-                
                 <div class="footer-column">
                     <h4 class="footer-title">Product</h4>
                     <ul class="footer-links">
@@ -381,16 +211,14 @@
                         <li><a href="#">Pricing</a></li>
                     </ul>
                 </div>
-                
                 <div class="footer-column">
                     <h4 class="footer-title">Company</h4>
                     <ul class="footer-links">
-                        <li><a href="#">About</a></li>
+                        <li><a href="about.html">About</a></li>
                         <li><a href="#">Blog</a></li>
                         <li><a href="#">Careers</a></li>
                     </ul>
                 </div>
-                
                 <div class="footer-column">
                     <h4 class="footer-title">Support</h4>
                     <ul class="footer-links">
@@ -400,14 +228,8 @@
                     </ul>
                 </div>
             </div>
-            
             <div class="footer-bottom">
-                <p>&copy; 2024 Visualize. All rights reserved.</p>
-                <div class="footer-legal">
-                    <a href="#">Terms</a>
-                    <a href="#">Privacy</a>
-                    <a href="#">Cookies</a>
-                </div>
+                <p>&copy; 2025 Visualize. All rights reserved.</p>
             </div>
         </div>
     </footer>
