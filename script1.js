@@ -828,14 +828,7 @@ document.addEventListener("DOMContentLoaded", () => {
 // Handle window resize for user's existing demos (the new playground handles its own resize)
 window.addEventListener("resize", () => {
   setTimeout(() => {
-    // Re-init small demos if their dimensions depend on offsetWidth/Height and can change
-    // Or better, give them their own robust resize handlers like the new playground.
-    // For now, just re-calling them as in user's original code.
-    // Be cautious: initSmallDemos, init2DCanvas, init3DCanvas, initVideoDemo might re-add event listeners if not careful.
-    // Consider making them idempotent or having separate resize handlers.
-    
-    // The new playground (initAdvancedMathPlayground) has its own 'pg_onWindowResize' listener,
-    // so it doesn't need to be called explicitly here again.
+  
   }, 100);
 });
 
